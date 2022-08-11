@@ -7,13 +7,12 @@ public class ContactInformation {
     private String id;
     private String email;
     private String phone;
-
     private String address;
 
     public ContactInformation(String id, String email, String phone, String address) {
         this.id = id;
-        this.email = email;
-        this.phone = phone;
+        setEmail(email);
+        setPhone(phone);
         this.address = address;
     }
 
@@ -30,7 +29,9 @@ public class ContactInformation {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+
+        if(email == null) throw new IllegalArgumentException("Email not allowed to be null!"); // check 1
+        this.email = email; //check 2
     }
 
     public String getPhone() {
@@ -38,7 +39,8 @@ public class ContactInformation {
     }
 
     public void setPhone(String phone) {
-        this.phone = phone;
+        if(phone == null) throw new IllegalArgumentException("Phone not allowed to be null!"); // check 1
+        this.phone = phone; // check 2
     }
 
     public String getAddress() {
@@ -46,7 +48,7 @@ public class ContactInformation {
     }
 
     public void setAddress(String address) {
-        address = address;
+        this.address = address;
     }
 
     @Override

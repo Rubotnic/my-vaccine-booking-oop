@@ -15,7 +15,7 @@ public class Patient {
 
     public Patient(String id, String ssn, String firstName, String lastName, LocalDate birthDate, ContactInformation contactInformation) {
         this.id = id;
-        this.ssn = ssn;
+        setSsn(ssn);
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
@@ -35,7 +35,8 @@ public class Patient {
     }
 
     public void setSsn(String ssn) {
-        this.ssn = ssn;
+        if(ssn == null) throw new IllegalArgumentException("Ssn n ot allowed to be null!"); // check 1
+        this.ssn = ssn; //check 2
     }
 
     public String getFirstName() {

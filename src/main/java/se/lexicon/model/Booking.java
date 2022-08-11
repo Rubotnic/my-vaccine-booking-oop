@@ -2,28 +2,34 @@ package se.lexicon.model;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.UUID;
 
 public class Booking {
 
     private String id;
-    private LocalDate dateTime;
+    private LocalDate dateTime; // top prio, not null = when
     private double price;
     private String administrator;
     private String vaccineType;
     private boolean vacant;
-    private Premises premises;
+    private Premises premises; // top prio, not null = where
     private Patient patient;
 
 
     public Booking(String id, LocalDate dateTime, double price, String administrator, String vaccineType, boolean vacant, Premises premises, Patient patient) {
         this.id = id;
-        this.dateTime = dateTime;
+        setDateTime(dateTime); // Don't write same code twice. Use setter.
         this.price = price;
         this.administrator = administrator;
         this.vaccineType = vaccineType;
         this.vacant = vacant;
-        this.premises = premises;
+        setPremises(premises); // Don't write same code twice. Use setter.
         this.patient = patient;
+    }
+
+    public Booking(LocalDate dateTime, double price, String administrator, String vaccineType, Premises premises) {
+
+        this(UUID.randomUUID().toString(), dateTime, price, administrator, vaccineType, true, premises, null);
     }
 
     public String getId() {
@@ -39,7 +45,10 @@ public class Booking {
     }
 
     public void setDateTime(LocalDate dateTime) {
-        this.dateTime = dateTime;
+
+        if(dateTime == null) throw new IllegalArgumentException("DateTime n ot allowed to be null!"); // check 1
+
+        this.dateTime = dateTime;// check 2
     }
 
     public double getPrice() {
@@ -79,7 +88,10 @@ public class Booking {
     }
 
     public void setPremises(Premises premises) {
-        this.premises = premises;
+
+        if(premises == null) throw new IllegalArgumentException("Premises not allowed to be null!"); // check 1
+
+        this.premises = premises; // check 2
     }
 
     public Patient getPatient() {

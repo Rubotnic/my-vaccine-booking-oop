@@ -14,6 +14,9 @@ public class Premises {
         this.contactInformation = contactInformation;
     }
 
+    public Premises() {
+    }
+
     public String getId() {
         return id;
     }
@@ -27,7 +30,9 @@ public class Premises {
     }
 
     public void setName(String name) {
-        this.name = name;
+
+        if(name == null) throw new IllegalArgumentException("Name not allowed to be null!"); // check 1
+        this.name = name;// check 2
     }
 
 
