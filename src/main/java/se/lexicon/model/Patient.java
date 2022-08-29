@@ -2,6 +2,7 @@ package se.lexicon.model;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.UUID;
 
 public class Patient {
 
@@ -10,7 +11,6 @@ public class Patient {
     private String firstName;
     private String lastName;
     private LocalDate birthDate;
-
     private ContactInformation contactInformation;
 
     public Patient(String id, String ssn, String firstName, String lastName, LocalDate birthDate, ContactInformation contactInformation) {
@@ -20,6 +20,10 @@ public class Patient {
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.contactInformation = contactInformation;
+    }
+
+    public Patient(String ssn, String firstName, String lastName, LocalDate birthDate, ContactInformation contactInformation) {
+        this(UUID.randomUUID().toString(), ssn, firstName, lastName, birthDate, contactInformation);
     }
 
     public String getId() {

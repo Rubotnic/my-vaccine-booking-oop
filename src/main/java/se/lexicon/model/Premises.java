@@ -1,6 +1,7 @@
 package se.lexicon.model;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class Premises {
 
@@ -10,8 +11,12 @@ public class Premises {
 
     public Premises(String id, String name, ContactInformation contactInformation) {
         this.id = id;
-        this.name = name;
-        this.contactInformation = contactInformation;
+        setName(name);
+        setContactInformation(contactInformation);
+    }
+
+    public Premises(String name, ContactInformation contactInformation) {
+        this(UUID.randomUUID().toString(), name, contactInformation);
     }
 
     public Premises() {
@@ -35,12 +40,12 @@ public class Premises {
         this.name = name;// check 2
     }
 
-
     public ContactInformation getContactInformation() {
         return contactInformation;
     }
 
     public void setContactInformation(ContactInformation contactInformation) {
+        if(contactInformation == null) throw new IllegalArgumentException("Contactinformation not allowed to bu null");
         this.contactInformation = contactInformation;
     }
 

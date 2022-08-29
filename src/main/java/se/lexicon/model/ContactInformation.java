@@ -1,6 +1,7 @@
 package se.lexicon.model;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class ContactInformation {
 
@@ -15,6 +16,14 @@ public class ContactInformation {
         setPhone(phone);
         this.address = address;
     }
+
+    public ContactInformation(String email, String phone, String address){
+        this(UUID.randomUUID().toString(), email, phone, address);
+    }
+
+    public ContactInformation(){
+    }
+
 
     public String getId() {
         return id;
